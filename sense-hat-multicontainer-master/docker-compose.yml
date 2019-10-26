@@ -1,0 +1,11 @@
+version: '2'
+services:
+  ledmatrix:
+    build: ./ledmatrix
+    privileged: true
+  sensors:
+    build: ./sensors
+    privileged: true
+  thumbstick:
+    build: ./thumbstick
+    privileged: true
