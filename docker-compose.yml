@@ -9,3 +9,4 @@ services:
   Broker:
     build: ./Broker
     privileged: true
+network_mode: "host"
