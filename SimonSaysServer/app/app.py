@@ -16,6 +16,8 @@ configPath = './conf'
 configFile = open(configPath, 'r')
 hostname = configFile.readline()
 
+print ("Socket hostname: ", socket.gethostname())
+print ("Config hostname: ", hostname)
 if hostname == socket.gethostname():
     print("SERVER")
 else:
