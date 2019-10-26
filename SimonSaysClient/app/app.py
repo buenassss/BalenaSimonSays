@@ -71,6 +71,7 @@ else:
         x = abs(x)
         y = abs(y)
         z = abs(z)
+        movementDetected = false
 
         if x > 1.1 or y > 1.1 or z > 1.1:
             print ("movement is {} {} {}".format(x, y, z))
