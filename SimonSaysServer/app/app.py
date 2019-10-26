@@ -3,11 +3,11 @@
 from sense_hat import SenseHat
 from time import sleep
 import paho.mqtt.client as mqtt
-import socket, sys
+#import socket, sys
 
-ip = socket.gethostbyname(socket.gethostname())
-print("Hostname: ", socket.gethostname())
-print ("IP: ", ip)
+#ip = socket.gethostbyname(socket.gethostname())
+#print("Hostname: ", socket.gethostname())
+#print ("IP: ", ip)
 
 #sense = SenseHat()
 #event = sense.stick.wait_for_event()
