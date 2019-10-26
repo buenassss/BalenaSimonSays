@@ -74,6 +74,9 @@ else:
 
         if x > 1 or y > 1 or z > 1:
             print ("movement is {} {} {}".format(x, y, z))
+            turnOnLedMatrix()
+        else :
+            turnOffLedMatrix()
 
 	        #Send message to server
 
