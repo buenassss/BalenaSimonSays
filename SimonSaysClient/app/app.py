@@ -52,7 +52,7 @@ if hostname == socket.gethostname():
     sys.exit(0)
 else:
     print("CLIENT")
-
+    movementDetected = False
     #wait message from server
     
     while True:
@@ -71,7 +71,6 @@ else:
         x = abs(x)
         y = abs(y)
         z = abs(z)
-        movementDetected = False
 
         if x > 1.1 or y > 1.1 or z > 1.1:
             print ("movement is {} {} {}".format(x, y, z))
@@ -79,6 +78,7 @@ else:
             movementDetected = True
         elif movementDetected :
             turnOffLedMatrix()
+            movementDetected = False
 
 	        #Send message to server
 
