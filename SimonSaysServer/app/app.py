@@ -9,13 +9,13 @@ ip = socket.gethostbyname(socket.gethostname())
 print("Hostname: ", socket.gethostname())
 print ("IP: ", ip)
 
-sense = SenseHat()
-event = sense.stick.wait_for_event()
-print("The joystick was {} {}".format(event.action, event.direction))
+#sense = SenseHat()
+#event = sense.stick.wait_for_event()
+#print("The joystick was {} {}".format(event.action, event.direction))
 
-configPath = './conf'
-configFile = open(configPath, 'r')
-hostname = configFile.readline()
+#configPath = './conf'
+#configFile = open(configPath, 'r')
+#hostname = configFile.readline()
 
 '''
 print ("Socket hostname: ", socket.gethostname())
