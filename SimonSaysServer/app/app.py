@@ -29,6 +29,7 @@ else:
 
 # broker server
 broker_address = "10.10.169.177"
+broker_port = 1883
 
 def on_message(client, userdata, message):
     print("message received ", str(message.payload.decode("utf-8")))
@@ -39,7 +40,7 @@ client = mqtt.Client("P1")   #create new instance
 client.on_message=on_message #attach function to callback
 
 print("connecting to broker")
-client.connect(broker_address) #connect to broker
+client.connect(broker_address, port=broker_port) #connect to broker
 
 client.loop_start() #start the loop
 print("Subscribing to topic", "server/data")
