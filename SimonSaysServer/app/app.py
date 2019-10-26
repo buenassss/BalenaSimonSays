@@ -1,7 +1,7 @@
 # Server: SimonSaysServer contains the logic to execute simon logic.
 
 from sense_hat import SenseHat
-from time import sleep
+import time
 import paho.mqtt.client as mqtt
 #import socket, sys
 
