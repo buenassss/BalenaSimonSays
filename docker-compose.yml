@@ -6,3 +6,6 @@ services:
   SimonSaysServer:
     build: ./SimonSaysServer
     privileged: true
+  Broker:
+    build: ./Broker
+    privileged: true
