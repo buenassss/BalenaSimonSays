@@ -1,6 +1,5 @@
 FROM resin/raspberrypi3-debian:latest
 
-
 ENV INITSYSTEM on
 
 RUN apt-get update && apt-get install -yq \
@@ -10,6 +9,6 @@ RUN apt-get update && apt-get install -yq \
   apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src/app
-COPY . ./
+COPY ./app /usr/src/app
 
-CMD ["python3", "app.py"]
+CMD ["python3", "/usr/src/app/app.py"]
