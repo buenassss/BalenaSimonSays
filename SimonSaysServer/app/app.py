@@ -17,6 +17,7 @@ configPath = './conf'
 configFile = open(configPath, 'r')
 hostname = configFile.readline()
 
+'''
 print ("Socket hostname: ", socket.gethostname())
 print ("Config hostname: ", hostname)
 if hostname == socket.gethostname():
@@ -24,6 +25,7 @@ if hostname == socket.gethostname():
 else:
     print("CLIENT -> exit")
     sys.exit(0)
+'''
 
 # broker server
 broker_address = "10.10.169.177"
