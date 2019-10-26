@@ -63,6 +63,17 @@ else:
             elif (event.action == "released") :
                 turnOffLedMatrix()
 
+        acceleration = sense.get_accelerometer_raw()
+        x = acceleration['x']
+        y = acceleration['y']
+        z = acceleration['z']
+
+        x = abs(x)
+        y = abs(y)
+        z = abs(z)
+
+        print ("movement is {} {} {}".format(x, y, z);
+
 	        #Send message to server
 
 
