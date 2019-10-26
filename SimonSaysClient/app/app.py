@@ -39,6 +39,18 @@ def turnOnLedMatrix():
 
 	sense.set_pixels(screen)
 
+def on_message(client, userdata, message):
+    print("message received ", str(message.payload.decode("utf-8")))
+    print("message topic=", message.topic)
+
+    turnOnLedMatrix()
+    sys.sleep(1)
+    turnOffLedMatrix()
+
+    #send confirmation to server
+    print("Send that client has flash correctly", "server/data")
+    client.publish("server/data", "P1 Done")
+
 ip = socket.gethostbyname(socket.gethostname())
 print("Hostname: ", socket.gethostname())
 print ("IP: ", ip)
@@ -53,8 +65,18 @@ if hostname == socket.gethostname():
 else:
     print("CLIENT")
     movementDetected = False
-    #wait message from server
-    
+    #connecting to server
+    print("creating new instance")
+    client = mqtt.Client("P1")   #create new instance
+    client.on_message=on_message #attach function to callback
+
+    print("connecting to broker")
+    client.connect(broker_address) #connect to broker
+
+    client.loop_start() #start the loop
+    print("Subscribing to topic", "server/data")
+    client.subscribe("server/data")
+
     while True:
         for event in sense.stick.get_events():
             print("The joystick was {} {}".format(event.action, event.direction))
@@ -62,6 +84,8 @@ else:
                 turnOnLedMatrix()	
             elif (event.action == "released") :
                 turnOffLedMatrix()
+                print("User move or push raspberry", "server/data")
+                client.publish("server/data", "P1 Push")
 
         acceleration = sense.get_accelerometer_raw()
         x = acceleration['x']
@@ -79,6 +103,8 @@ else:
         elif movementDetected :
             turnOffLedMatrix()
             movementDetected = False
+            print("User move or push raspberry", "server/data")
+            client.publish("server/data", "P1 Push")
 
 	        #Send message to server
 
