@@ -3,12 +3,27 @@
 from sense_hat import SenseHat
 from time import sleep
 import paho.mqtt.client as mqtt
+import socket, sys
+
+ip = socket.gethostbyname(socket.gethostname())
+print("Hostname: ", socket.gethostname())
+print ("IP: ", ip)
 
 sense = SenseHat()
 event = sense.stick.wait_for_event()
 print("The joystick was {} {}".format(event.action, event.direction))
 
-# Send event to server
+configPath = './conf'
+configFile = open(configPath, 'r')
+hostname = configFile.readline()
+
+print ("Socket hostname: ", socket.gethostname())
+print ("Config hostname: ", hostname)
+if hostname == socket.gethostname():
+    print("SERVER")
+else:
+    print("CLIENT -> exit")
+    sys.exit(0)
 
 # broker server
 broker_address = "10.10.169.177"
@@ -34,3 +49,4 @@ client.publish("server/data", "This is message sent from the servr")
 time.sleep(4) # wait
 client.loop_stop() #stop the loop
 
+# Send event to server
