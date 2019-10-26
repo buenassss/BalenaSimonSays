@@ -60,7 +60,7 @@ else:
             print("The joystick was {} {}".format(event.action, event.direction))
             if (event.action == "pressed") :
                 turnOnLedMatrix()	
-            else :
+            elif (event.action == "released") :
                 turnOffLedMatrix()
 
 	        #Send message to server
