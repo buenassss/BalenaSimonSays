@@ -3,11 +3,9 @@ services:
   SimonSaysClient:
     build: ./SimonSaysClient
     privileged: true
-    network_mode: "host"
   SimonSaysServer:
     build: ./SimonSaysServer
     privileged: true
-    network_mode: "host"
   Broker:
     build: ./Broker
     privileged: true
