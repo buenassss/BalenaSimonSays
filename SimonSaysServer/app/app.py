@@ -2,10 +2,25 @@
 
 from sense_hat import SenseHat
 from time import sleep
+import socket, sys
+
+ip = socket.gethostbyname(socket.gethostname())
+print("Hostname: ", socket.gethostname())
+print ("IP: ", ip)
 
 sense = SenseHat()
 event = sense.stick.wait_for_event()
 print("The joystick was {} {}".format(event.action, event.direction))
 
-# Send event to server
+configPath = './conf'
+configFile = open(configPath, 'r')
+hostname = configFile.readline()
 
+if hostname == socket.gethostname():
+    print("SERVER")
+elif 
+    print("CLIENT -> exit")
+    sys.exit(0)
+
+
+# Send event to server
