@@ -1,5 +1,8 @@
 version: '2'
 services:
-  ledmatrix:
-    build: ./ledmatrix
+  SimonSaysClient:
+    build: ./SimonSaysClient
+    privileged: true
+  SimonSaysServer:
+    build: ./SimonSaysServer
     privileged: true
