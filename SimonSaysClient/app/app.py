@@ -1,6 +1,6 @@
 # Server: SimonSaysServer contains the logic to execute simon logic.
 
-ense_hat import SenseHat
+from sense_hat import SenseHat
 from time import sleep
 
 sense = SenseHat()
