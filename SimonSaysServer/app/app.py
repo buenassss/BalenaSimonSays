@@ -18,7 +18,7 @@ hostname = configFile.readline()
 
 if hostname == socket.gethostname():
     print("SERVER")
-elif 
+else:
     print("CLIENT -> exit")
     sys.exit(0)
 
