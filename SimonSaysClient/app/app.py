@@ -55,7 +55,7 @@ else:
 
     #wait message from server
     
-	while True:
+    while True:
         for event in sense.stick.get_events():
             turnOnLedMatrix()	
             turnOffLedMatrix()
