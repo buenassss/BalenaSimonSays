@@ -1,4 +1,4 @@
-# Server: SimonSaysServer contains the logic to execute simon logic.
+# Client: SimonSaysClient contains the logic to execute simon logic.
 
 from sense_hat import SenseHat
 from time import sleep
