@@ -72,7 +72,7 @@ else:
         y = abs(y)
         z = abs(z)
 
-        print ("movement is {} {} {}".format(x, y, z);
+        print ("movement is {} {} {}".format(x, y, z));
 
 	        #Send message to server
 
