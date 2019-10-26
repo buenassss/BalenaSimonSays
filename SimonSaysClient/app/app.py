@@ -50,7 +50,7 @@ hostname = configFile.readline()
 if hostname == socket.gethostname():
     print("SERVER -> exit")
     sys.exit(0)
-elif:
+else:
     print("CLIENT")
 
     #wait message from server
