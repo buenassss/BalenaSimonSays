@@ -10,7 +10,7 @@ print("The joystick was {} {}".format(event.action, event.direction))
 
 configPath = './conf'
 configFile = open(configPath, 'r')
-ip = socket.gethostbyname(socket.gethostname))
+ip = socket.gethostbyname(socket.gethostname())
 print ("IP: ", ip)
 
 # Send event to server
