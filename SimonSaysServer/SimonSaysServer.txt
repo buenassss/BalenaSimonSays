@@ -1,0 +1,115 @@
+import time
+import random
+from sense_hat import SenseHat
+
+sense = SenseHat()
+
+### Constants and Variables ###
+Node1 = 10.10.169.184
+Node2 = 10.10.169.155
+Node3 = 10.10.169.177
+Node4 = 10.10.169.180
+allLeds = [Node1,Node2,Node3,Node4]
+B1 = 12
+B2 = 8
+B3 = 24
+B4 = 18
+N = 2
+selectedColor = None
+colors = []
+
+
+### Functions ###
+
+# gets the color pressed by the user
+def getColor():
+	while True:
+		if(GPIO.input(B1)):
+			return Node1
+		elif(GPIO.input(B2)):
+			return Node2
+		elif(GPIO.input(B3)):
+			return Node3
+		elif(GPIO.input(B4)):
+			return Node4
+
+# plays the note for a given time
+def playNote(t):
+	GPIO.output(N,1)
+	time.sleep(t)
+	GPIO.output(N,0)
+
+def sendMessageToNode(node):
+	# send message
+	print("Send color to node", "server/data")
+    client.publish("server/data", "P1 Flash")
+
+
+# plays note and lights Node
+def playColor(node,t):
+	sendMessageToNode(node)
+	waitMessage(node)
+
+# gets a random color/LED
+def getRandColor():
+	randomInt = random.randint(1,4)
+	if(randomInt==1):
+		return Node1
+	elif(randomInt==2):
+		return Node2
+	elif(randomInt==3):
+		return Node3
+	else:
+		return Node4	
+
+# plays the sequence for the user
+def playSequence():
+	for led in colors:
+		playColor(led,0.3)
+		time.sleep(0.3)
+
+# adds new random color to the colors array
+def addColor():
+	randomColor = getRandColor()
+	colors.append(randomColor)
+
+# terminates the game in an amazing way
+def playEndGame():
+	print "\n\n          *** THE USER HAS LOST! ***\n\n"
+	time.sleep(0.1)
+	GPIO.output(allLeds,1)
+	for i in range(0,7):
+		playNote(0.15)
+		time.sleep(0.15)
+	GPIO.output(allLeds,0)
+	GPIO.cleanup()	# cleans up the "mess"
+	exit()
+
+# gets all the sequence, dealing with failure
+def getColorSequence():
+	selectedColor = None
+	for color in colors:
+		selectedColor = getColor()
+		playColor(selectedColor,0.3)
+		if(selectedColor != color):
+			playEndGame()
+
+# Buzz sound warning the program started
+for i in range(0,5):
+	playNote(0.15)
+	time.sleep(0.15)
+
+# Wait two seconds before the game starts	
+time.sleep(2)
+
+try:
+	while True:
+		addColor()
+		playSequence()
+		getColorSequence()
+		time.sleep(1)
+	
+except KeyboardInterrupt:
+	playNote(0.5)
+	GPIO.cleanup()
+	print "\nProgram is over!"
